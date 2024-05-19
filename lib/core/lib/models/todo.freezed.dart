@@ -20,6 +20,7 @@ Todo _$TodoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Todo {
+  int get userId => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
       _$TodoCopyWithImpl<$Res, Todo>;
   @useResult
-  $Res call({int id, String title, bool completed});
+  $Res call({int userId, int id, String title, bool completed});
 }
 
 /// @nodoc
@@ -50,11 +51,16 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? userId = null,
     Object? id = null,
     Object? title = null,
     Object? completed = null,
   }) {
     return _then(_value.copyWith(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -78,7 +84,7 @@ abstract class _$$TodoImplCopyWith<$Res> implements $TodoCopyWith<$Res> {
       __$$TodoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, bool completed});
+  $Res call({int userId, int id, String title, bool completed});
 }
 
 /// @nodoc
@@ -91,11 +97,16 @@ class __$$TodoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? userId = null,
     Object? id = null,
     Object? title = null,
     Object? completed = null,
   }) {
     return _then(_$TodoImpl(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -116,11 +127,16 @@ class __$$TodoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TodoImpl implements _Todo {
   const _$TodoImpl(
-      {required this.id, required this.title, required this.completed});
+      {required this.userId,
+      required this.id,
+      required this.title,
+      required this.completed});
 
   factory _$TodoImpl.fromJson(Map<String, dynamic> json) =>
       _$$TodoImplFromJson(json);
 
+  @override
+  final int userId;
   @override
   final int id;
   @override
@@ -130,7 +146,7 @@ class _$TodoImpl implements _Todo {
 
   @override
   String toString() {
-    return 'Todo(id: $id, title: $title, completed: $completed)';
+    return 'Todo(userId: $userId, id: $id, title: $title, completed: $completed)';
   }
 
   @override
@@ -138,6 +154,7 @@ class _$TodoImpl implements _Todo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TodoImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.completed, completed) ||
@@ -146,7 +163,7 @@ class _$TodoImpl implements _Todo {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, completed);
+  int get hashCode => Object.hash(runtimeType, userId, id, title, completed);
 
   @JsonKey(ignore: true)
   @override
@@ -164,12 +181,15 @@ class _$TodoImpl implements _Todo {
 
 abstract class _Todo implements Todo {
   const factory _Todo(
-      {required final int id,
+      {required final int userId,
+      required final int id,
       required final String title,
       required final bool completed}) = _$TodoImpl;
 
   factory _Todo.fromJson(Map<String, dynamic> json) = _$TodoImpl.fromJson;
 
+  @override
+  int get userId;
   @override
   int get id;
   @override
